@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2023-06-12T14:53:03.477+02:00" lastModified="2023-06-29T09:45:25.599+02:00" leaf="true" version="55">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.utils.List.add</references>
+    <references>nabu.utils.types.DateValues</references>
+    <references>java.util.Date</references>
+    <references>nabu.frameworks.datastore.utils.zipFiles</references>
+    <references>nabu.utils.Resource.delete</references>
+    <references>nabu.frameworks.datastore.utils.fileMapping</references>
+    <references>nabu.utils.List.addAll</references>
+    <references>nabu.utils.Date.toValues</references>
+    <references>nabu.utils.Resource.list</references>
+    <references>be.nabu.libs.types.base.Duration</references>
+    <references>java.lang.Long</references>
+    <references>nabu.frameworks.datastore.utils.isInWindow</references>
+    <references>java.lang.Boolean</references>
+    <references>java.lang.String</references>
+    <references>java.net.URI</references>
+    <references>nabu.utils.Date.incrementDuration</references>
+    <references>nabu.utils.Date.fromValues</references>
+    <references>be.nabu.libs.resources.api.ResourceProperties</references>
+</node>

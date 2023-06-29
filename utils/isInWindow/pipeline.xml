@@ -1,0 +1,15 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field name="from" type="java.util.Date"/>
+        <field name="until" type="java.util.Date"/>
+        <field name="uri" type="java.net.URI"/>
+        <field name="level" type="java.lang.String"/>
+    </structure>
+    <structure name="output">
+        <field name="inWindow" type="java.lang.Boolean"/>
+    </structure>
+    <field minOccurs="0" name="path" type="java.lang.String"/>
+    <field name="date" type="java.lang.String"/>
+    <field name="from" type="java.lang.String"/>
+    <field name="until" type="java.lang.String"/>
+</structure>

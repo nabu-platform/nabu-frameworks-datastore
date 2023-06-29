@@ -1,0 +1,188 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="c9fb726e2d2f40d3afa99e8434310137"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="dde2c20232674a7cbfeae8c988ef5d1a"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="59c08488c2244232ba452f2a906bcc86"
+				serviceId="nabu.utils.String.replace"
+				resultName="result04bca6098a6d4d6d8733d40ab1856d8d"
+				temporaryMapping="true"
+				x="61"
+				y="78"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="f013019ceda44396887d4295eb204fea"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/directoryToZip</from>
+				<to>content</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="be08bda8f64b40b197519ec98508a92a"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>^.*/([^/]+)$</from>
+				<to>match</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6a2e7d226c9f4497a0cec1f285eff8cb"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>$1</from>
+				<to>replace</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a9369ff65be040ec81f9a75556930638"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>useRegex</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="1ada634d5666408d88c51d968d1c8efc"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result04bca6098a6d4d6d8733d40ab1856d8d/content</from>
+			<to>directoryName</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="fa749314ed934a1cae4f60e290102a6d"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>input/hasZipped</from>
+			<to>output/hasZipped</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="489987fee459497b89f637e3d82a93ff"
+			label="input/filesToZip"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="3790fa031ce34613a64959c1e4c39b8a"
+				serviceId="nabu.frameworks.datastore.Services.zip"
+				resultName="resulte8814372ec9c438f8163e12c2b0f037f"
+				temporaryMapping="true"
+				x="81"
+				y="86"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="9da413f94e664417aa59c1be3408131a"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>=directoryName + ".zip"</from>
+				<to>name</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ad5ff47e1679400b82bcb8e555eb69b4"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/filesToZip/uri</from>
+				<to>uris</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8fb14a5b4cb948429cc7209c168f7c03"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/context</from>
+				<to>context</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="20c8e14ae7be448eafc7a1b4eb3bbcde"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>true</from>
+				<to>describe</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="19f5ee6558a7456fb1170ac7b8e33b1c"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulte8814372ec9c438f8163e12c2b0f037f/zip/uri</from>
+			<to>output/zipUri</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="db7ab84496f8465fbcd118a429a31e79"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resulte8814372ec9c438f8163e12c2b0f037f/zip/descriptors</from>
+			<to>descriptors</to>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="22147ad16ccc4caabe4f7245638c5fcf"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>true</from>
+			<to>output/hasZipped</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="c10573a27c3347458fb87608b592c56f"
+			lineNumber="4"
+			variable="descriptor"
+			into="output/mappedFiles">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="bd4abc5de1894af2932363a922eff081"
+				lineNumber="5">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0c0947eae510411eb37360e0cfdf6634"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>descriptor/uri</from>
+				<to>output/mappedFiles[0]/originalUrl</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3573d25f100b4be0abde96471338105c"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>="" + output/zipUri + "/" + descriptor/name</from>
+				<to>output/mappedFiles[0]/newUrl</to>
+			</steps>
+		</steps>
+		<query>descriptors</query>
+	</steps>
+</sequence>

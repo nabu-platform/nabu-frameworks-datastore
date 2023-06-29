@@ -1,0 +1,1531 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="5936ca782ffe4945b3254ed2bfa43ca9"
+		lineNumber="1">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="d0d29f8110034305828f8537251af362"
+			label="input/amountOfWindows == null"
+			lineNumber="2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="8df10bedbe4f4cb8886c41e9940b61a2"
+				mask="false"
+				optional="false"
+				fixedValue="true">
+			<from>100</from>
+			<to>input/amountOfWindows</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="b938ae0d1d4647a89a8425b3e4af031f"
+			lineNumber="3">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="5d5f6dca85b947c99f737aef588a01ae"
+				serviceId="nabu.utils.Date.incrementDuration"
+				resultName="resultc99572b954aa4263b44cbda9fdb52984"
+				temporaryMapping="true"
+				x="91"
+				y="44"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="fc9b3b7be7964071a4ec4609df87ef57"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/window</from>
+				<to>duration</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3544c17f2c8e4a3481c044de051409a4"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>-1</from>
+				<to>times</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="8fd62e9bcb5d43ed84bd76f974cb4783"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc99572b954aa4263b44cbda9fdb52984/date</from>
+			<to>before</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="Protect the user: we can't archive the &quot;last&quot; window, we must go back at least one window"
+			disabled="false"
+			id="bd8bade9148046f4bb8e2235530cdf7a"
+			label="input/before == null || input/before &gt; before"
+			lineNumber="4">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="d0a6b5201ae44aaca7671ddf17c6bfef"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>before</from>
+			<to>input/before</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="9aa3d7a38d284b18bc024e7f7d2104b4"
+			lineNumber="5">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="32209061d11a4f3fa8e143cb6e288edf"
+				serviceId="nabu.utils.Date.toValues"
+				resultName="resultd4cd191069fb41e582342f44612f8c78"
+				temporaryMapping="true"
+				x="63"
+				y="106"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="70c852b5249141fc804e4c3625006e53"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/before</from>
+				<to>date</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="339e6db32da541ee98bcca84fb13f184"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultd4cd191069fb41e582342f44612f8c78/values</from>
+			<to>values</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+			disabled="false"
+			id="43e68b657ea84344a682d5cc7ab95a06"
+			lineNumber="6">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="We are using days, reset the time component to midnight"
+				disabled="false"
+				id="ee0512746aaf4e6dacfd8912abe1e9e2"
+				label="input/window ~ &quot;^.*[0-9]+D$&quot;"
+				lineNumber="7">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="873d631ff231426b844e8bc9800bd272"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/hour</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="68ed5f3d391741878683bfee8fbb4e91"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/millisecond</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="3cee1f90026d44d2aadf115c6e8fe4eb"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/minute</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="42db8fe771624342b8ac22bf6ecf3eeb"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/second</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4718788ce333499f890eb53a112a36c0"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>daily</from>
+				<to>level</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="We are using days, reset the time component to midnight, date to first of the month"
+				disabled="false"
+				id="684f05c3d9764652bfb4c0ed42a46f42"
+				label="input/window ~ &quot;^.*[0-9]+M$&quot;"
+				lineNumber="8">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e8276fccbe7f403bb87a1abc42b44e28"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/hour</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="ebf706d871a94a868b38928418e0abd6"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/millisecond</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="66da6f73f7d6485289c639910d8be637"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/minute</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="1f75604013cb44dea500c3f690ace720"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/second</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="cc50e7f07be047aa952bb5bb22beaf8f"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>1</from>
+				<to>values/day</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="c6c9ca3bdc7e423aba0087b1044b0ab9"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>monthly</from>
+				<to>level</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Yearly...?"
+				disabled="false"
+				id="0956f016296849a884c2994cc0198945"
+				label="input/window ~ &quot;^.*[0-9]+Y$&quot;"
+				lineNumber="9">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="e76c52cfff204c8f915c53afe71a4f91"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/hour</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="4303ab977d4a456cbafef61f5b89a764"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/millisecond</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="6f7e948f88d74b4f8277cc757e4ec246"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/minute</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="8d3b9a68379a4905b3d7a1bf67675db9"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>0</from>
+				<to>values/second</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="a649cfea134c4b95a05f0c649f732d3d"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>1</from>
+				<to>values/month</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="26a0b275cd484a75ac7e0b85d6dbfbaf"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>1</from>
+				<to>values/day</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="751b8d70e68b495cbc510e26afdce416"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>yearly</from>
+				<to>level</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Throw"
+				disabled="false"
+				id="42989fa14fbe44abbe67c248a41d65c5"
+				lineNumber="10"
+				message="Invalid time window" xsi:nil="true"/>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="4ab2c34135904fe5a6846e049b432654"
+			lineNumber="11">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="2c0495cf7dad497998d57d53317d5f48"
+				serviceId="nabu.utils.Date.fromValues"
+				resultName="result9530270230f24870bcbdbe7b755499f4"
+				temporaryMapping="true"
+				x="88"
+				y="96"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="0dbd7778d6a443a3a2fcb3e62b0a9be9"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>values</from>
+				<to>values</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="a47c9f909ff54c42a3984b6aa5ef42f4"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result9530270230f24870bcbdbe7b755499f4/date</from>
+			<to>until</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			comment="List all files at the root"
+			disabled="false"
+			id="1ff705cede1f4fc9b3853e006d064511"
+			lineNumber="12">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="c640aa9c291040d19c5b6f0c2a1035ac"
+				serviceId="nabu.utils.Resource.list"
+				resultName="result038a3603472c4aee8cafe2724a9efbc9"
+				temporaryMapping="true"
+				x="72"
+				y="170"
+				invocationOrder="0"
+				asynchronous="false"
+				recache="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="228282bd3abf4693b9642ffc70806be7"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/folder</from>
+				<to>uri</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="29075e61b0994562b6e5c8e2f9466ecf"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>^[0-9]+$</from>
+				<to>directoryFilter</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="371bcd0c9697404da819c32e00a3a0de"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>result038a3603472c4aee8cafe2724a9efbc9/children</from>
+			<to>yearFiles</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="0fbd34b718404534b1c9c738e2fadbcb"
+			lineNumber="13">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="Calculate the window"
+				disabled="false"
+				id="c0eef8d75c504ae08e9f04b89196d6f0"
+				lineNumber="14">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					disabled="false"
+					id="58e13f5acc1f4f62b4acf6bd9db47f97"
+					serviceId="nabu.utils.Date.incrementDuration"
+					resultName="resultbe6772c6342345c28fba6627635c5697"
+					temporaryMapping="true"
+					x="182"
+					y="81"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="3fc9b3c0429c44d093db447785f67f21"
+						mask="false"
+						optional="false"
+						fixedValue="true">
+					<from>-1</from>
+					<to>times</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="dc3f71566fce4fda934a841f38b3ff96"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>until</from>
+					<to>start</to>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="e6e70a4e9a434dc7bc66bb2306b99efe"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>input/window</from>
+					<to>duration</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="76c7e34b478a418690583dca09b5adbd"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>resultbe6772c6342345c28fba6627635c5697/date</from>
+				<to>from</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="cf2023f8f10a4e6b922ec4428149068d"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>false</from>
+				<to>hasZipped</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
+					disabled="false"
+					id="35b044b858764837adb0463cbd165c3c"
+					path="filesToDelete" xsi:nil="true"/>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.For"
+				disabled="false"
+				id="4bab499e61a147ad9e168b3937523fed"
+				lineNumber="15"
+				variable="yearFile">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="0fe33c95ddd44165b64d9bd9f2d6261e"
+					lineNumber="16">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="05cbbb0180c04933b67065c06e134cca"
+						serviceId="nabu.frameworks.datastore.utils.isInWindow"
+						resultName="result5418a5c1667146699548a7a67a2622d4"
+						temporaryMapping="true"
+						x="269"
+						y="77"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="67b861703ec24ceaa23553ce9f226f80"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>yearFile/uri</from>
+						<to>uri</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="835cab53cce6426fb17694e2724109fe"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>from</from>
+						<to>from</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="63f7ee49da0e4e1d83775a7bfe733b84"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>until</from>
+						<to>until</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="deb5dce6ddbd4db0a9bedcf7410a1dab"
+							mask="false"
+							optional="false"
+							fixedValue="true">
+						<from>yearly</from>
+						<to>level</to>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						disabled="false"
+						id="49e94c8f18d44af797bd7c775707bc41"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>result5418a5c1667146699548a7a67a2622d4/inWindow</from>
+					<to>inWindow</to>
+				</steps>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Break"
+					disabled="false"
+					id="47ee7ace3d2b40c19f8ca575a6f6f750"
+					label="!inWindow"
+					lineNumber="17">
+				<count>1</count>
+				<continueExecution>true</continueExecution>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+					disabled="false"
+					id="2e92521e44ee4a2789cbbcfd50e60006"
+					lineNumber="18"
+					query="level">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+						disabled="false"
+						id="758f076a39e94ab3b03adaa5b287af74"
+						label="&quot;yearly&quot;"
+						lineNumber="19">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+							disabled="false"
+							id="9c1ca7b1df7547af808e7030e140c1e8"
+							lineNumber="20">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="e8c30b54b2314889954a31055fdfb3f0"
+								serviceId="nabu.utils.Resource.list"
+								resultName="result8b5663097e0843bd914204ef0b96bbc3"
+								temporaryMapping="true"
+								x="27"
+								y="69"
+								invocationOrder="0"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="f46f758e5d414f43955c724e9d546b93"
+									mask="false"
+									optional="false"
+									fixedValue="true">
+								<from>true</from>
+								<to>recursive</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="ed9c3660d1324f7bbc20da1c8d7c8e37"
+									mask="false"
+									optional="false"
+									fixedValue="true">
+								<from>.*</from>
+								<to>fileFilter</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="38d83de8e6a646239d30f123a232d354"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>yearFile/uri</from>
+								<to>uri</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="32248fac76514764b4d65cb612c5c21d"
+								serviceId="nabu.frameworks.datastore.utils.zipFiles"
+								resultName="resultec3c282ae17d4aa6bb42704d192d0016"
+								temporaryMapping="true"
+								x="315"
+								y="291"
+								invocationOrder="1"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="b77698de29cc4fa9a95c4c3687ff442e"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>result8b5663097e0843bd914204ef0b96bbc3/children</from>
+								<to>filesToZip</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="8f0d1f0f26b84d94b148ffff130d42f2"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>input/context</from>
+								<to>context</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="83536ffe7005406d98db3fa5ae0c4253"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>yearFile/uri</from>
+								<to>directoryToZip</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="1d85378283e844c686beab9f96430fa0"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>hasZipped</from>
+								<to>hasZipped</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="53952b7951df48b682b7ea9019543cb5"
+								serviceId="nabu.utils.List.addAll"
+								resultName="result2bd2762f2e7b4c18bf179dd63b884b27"
+								temporaryMapping="true"
+								x="449"
+								y="477"
+								invocationOrder="2"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="91fb30d742294556a579e8ae9b82dd3d"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>output/mappedFiles</from>
+								<to>list</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="cf076539427c471a919abd634714d92c"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>resultec3c282ae17d4aa6bb42704d192d0016/mappedFiles</from>
+								<to>objects</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="f2ffabc1dfdd4fb09fcb3ce417e627d1"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>result2bd2762f2e7b4c18bf179dd63b884b27/list</from>
+							<to>output/mappedFiles</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="03932dfe0c6b43009da7edeadab721f2"
+								serviceId="nabu.utils.List.addAll"
+								resultName="result1f269bb03fea4167bc81887efe5b2863"
+								temporaryMapping="true"
+								x="396"
+								y="45"
+								invocationOrder="1"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="459a907847934f89a3f916f7b3a65982"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>result8b5663097e0843bd914204ef0b96bbc3/children</from>
+								<to>objects</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="fe91d1a4e4504d709c0564d20f99cecd"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>filesToDelete</from>
+								<to>list</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="f3331d4154534ae2b5c81b667261b105"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>result1f269bb03fea4167bc81887efe5b2863/list</from>
+							<to>filesToDelete</to>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="488572a85b974afbbad076b24b07e573"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>resultec3c282ae17d4aa6bb42704d192d0016/hasZipped</from>
+							<to>hasZipped</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+							disabled="false"
+							id="074b8d774d214d9082d76996c67178e6"
+							lineNumber="21">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="d3f4b79686a24ae09d89007f25225591"
+								serviceId="nabu.utils.List.add"
+								resultName="resultae3f624f6d2c4e8ea66e977cca52e181"
+								temporaryMapping="true"
+								x="36"
+								y="170"
+								invocationOrder="0"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="f8355f72fba243adb79e193d050127df"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>filesToDelete</from>
+								<to>list</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="e8d2028c0b4a4d4aaa02ecc8a0fc54e2"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>yearFile</from>
+								<to>object</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="abe4d59111e94b3f8b5a1e600745b848"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>resultae3f624f6d2c4e8ea66e977cca52e181/list</from>
+							<to>filesToDelete</to>
+						</steps>
+					</steps>
+				</steps>
+				<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+						disabled="false"
+						id="f4f560c5606b46b686bf2c5d7b1b44a4"
+						lineNumber="22">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+							disabled="false"
+							id="70455e899be54ff3a92045843d48132d"
+							lineNumber="23">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+								disabled="false"
+								id="d0eaec88b61f46e6ac6c0813fd182941"
+								serviceId="nabu.utils.Resource.list"
+								resultName="resultf93de7149e4943e3bd7fd9de2c5e9ba5"
+								temporaryMapping="true"
+								x="61"
+								y="152"
+								invocationOrder="0"
+								asynchronous="false"
+								recache="false">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="285657c8a0534fbda05c82910ad912bb"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>yearFile/uri</from>
+								<to>uri</to>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="fa34587c492b4ea590c9118f6e4322f5"
+									mask="false"
+									optional="false"
+									fixedValue="true">
+								<from>^[0-9]+$</from>
+								<to>directoryFilter</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								disabled="false"
+								id="7fae18526113482aa9ba43c9590befc4"
+								mask="false"
+								optional="false"
+								fixedValue="false">
+							<from>resultf93de7149e4943e3bd7fd9de2c5e9ba5/children</from>
+							<to>monthFiles</to>
+						</steps>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.For"
+							disabled="false"
+							id="1d47bd940f864a97bae788e54b2f4a16"
+							lineNumber="24"
+							variable="monthFile">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+								disabled="false"
+								id="673c63e8840142e7bf1585eedad6ebf3"
+								lineNumber="25">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+									disabled="false"
+									id="26afa3b4fb374b2cac68d1bfab9035bc"
+									serviceId="nabu.frameworks.datastore.utils.isInWindow"
+									resultName="result5418a5c1667146699548a7a67a2622d4"
+									temporaryMapping="true"
+									x="269"
+									y="77"
+									invocationOrder="0"
+									asynchronous="false"
+									recache="false">
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="0a7afe1c2e0449d9ae4a433a197a36ae"
+										mask="false"
+										optional="false"
+										fixedValue="false">
+									<from>from</from>
+									<to>from</to>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="2c53619d2b374431a1ea8c8d2b7344ac"
+										mask="false"
+										optional="false"
+										fixedValue="false">
+									<from>until</from>
+									<to>until</to>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="027f0ec9859046d6b1cc27831461dffe"
+										mask="false"
+										optional="false"
+										fixedValue="true">
+									<from>monthly</from>
+									<to>level</to>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="945dbec1a83a4b6cb6eae098200a286b"
+										mask="false"
+										optional="false"
+										fixedValue="false">
+									<from>monthFile/uri</from>
+									<to>uri</to>
+								</steps>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="8a9fb188af004df5adb5f8e7451e56f6"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>result5418a5c1667146699548a7a67a2622d4/inWindow</from>
+								<to>inWindow</to>
+							</steps>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Break"
+								disabled="false"
+								id="e9842679d77842488c34acae35ea098f"
+								label="!inWindow"
+								lineNumber="26">
+							<count>1</count>
+							<continueExecution>true</continueExecution>
+						</steps>
+						<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
+								disabled="false"
+								id="2bdd1fdd57484bbb93394b6c20b01dfc"
+								lineNumber="27"
+								query="level">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+									disabled="false"
+									id="446d8a3c01884b989e1b21cf9a18629a"
+									label="&quot;monthly&quot;"
+									lineNumber="28">
+								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+										disabled="false"
+										id="cb1a3920acec4c22b6dbd88bac33fc10"
+										lineNumber="29">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+											disabled="false"
+											id="2f12f6b4c20c40d0883b0a2fc02c79e3"
+											serviceId="nabu.utils.Resource.list"
+											resultName="result8b5663097e0843bd914204ef0b96bbc3"
+											temporaryMapping="true"
+											x="27"
+											y="69"
+											invocationOrder="0"
+											asynchronous="false"
+											recache="false">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="c063e9213cf54140bc9a2ed1bcd557fd"
+												mask="false"
+												optional="false"
+												fixedValue="true">
+											<from>true</from>
+											<to>recursive</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="3211b6efe3b747d8ac0e549c8425cc81"
+												mask="false"
+												optional="false"
+												fixedValue="true">
+											<from>.*</from>
+											<to>fileFilter</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="7f578d5cba2c437bb1b5965bc32b6cf9"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>monthFile/uri</from>
+											<to>uri</to>
+										</steps>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+											disabled="false"
+											id="dcc161ad4ad9488a841b43dc79840c58"
+											serviceId="nabu.frameworks.datastore.utils.zipFiles"
+											resultName="resultec3c282ae17d4aa6bb42704d192d0016"
+											temporaryMapping="true"
+											x="315"
+											y="291"
+											invocationOrder="1"
+											asynchronous="false"
+											recache="false">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="62fed78608304276a7c4c94649349a36"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>result8b5663097e0843bd914204ef0b96bbc3/children</from>
+											<to>filesToZip</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="91914894399d48269792ba3b7991242e"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>input/context</from>
+											<to>context</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="5df3a42b0a42466882429b44fea95d00"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>monthFile/uri</from>
+											<to>directoryToZip</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="6f4b3a63c4b84f5f9e8b78be92219662"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>hasZipped</from>
+											<to>hasZipped</to>
+										</steps>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+											disabled="false"
+											id="920792615e4f4fa9a13598fc26212b55"
+											serviceId="nabu.utils.List.addAll"
+											resultName="result2bd2762f2e7b4c18bf179dd63b884b27"
+											temporaryMapping="true"
+											x="449"
+											y="477"
+											invocationOrder="2"
+											asynchronous="false"
+											recache="false">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="e9151c1e502b4924a2938ed8a7323f96"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>output/mappedFiles</from>
+											<to>list</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="3d7a18d04c574ecd8441585505a88cff"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>resultec3c282ae17d4aa6bb42704d192d0016/mappedFiles</from>
+											<to>objects</to>
+										</steps>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="3aa6baf762b8408797c6a170115ed7ad"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>result2bd2762f2e7b4c18bf179dd63b884b27/list</from>
+										<to>output/mappedFiles</to>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+											disabled="false"
+											id="f5197d0c1a4a44f693cce77e7025a2de"
+											serviceId="nabu.utils.List.addAll"
+											resultName="result78ec73e24c9148dcbf7254c597a21749"
+											temporaryMapping="true"
+											x="437"
+											y="48"
+											invocationOrder="1"
+											asynchronous="false"
+											recache="false">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="bfd9b77159e44943ace1056de5122c84"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>result8b5663097e0843bd914204ef0b96bbc3/children</from>
+											<to>objects</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="4ba70b1b289c4cabbbfe24aaaa9b194a"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>filesToDelete</from>
+											<to>list</to>
+										</steps>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="981d554be2ff4585bc52714e16f48a33"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>result78ec73e24c9148dcbf7254c597a21749/list</from>
+										<to>filesToDelete</to>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="cfac409cced641b2810006776adcdd13"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>resultec3c282ae17d4aa6bb42704d192d0016/hasZipped</from>
+										<to>hasZipped</to>
+									</steps>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+										disabled="false"
+										id="55f6acb18a4e461a95e3096a42851d8f"
+										lineNumber="30">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+											disabled="false"
+											id="7048d5e49d4744a5b802a0229d6f4be9"
+											serviceId="nabu.utils.List.add"
+											resultName="resultae3f624f6d2c4e8ea66e977cca52e181"
+											temporaryMapping="true"
+											x="36"
+											y="170"
+											invocationOrder="0"
+											asynchronous="false"
+											recache="false">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="9718816dd3d54291aa9108420b9fdc25"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>filesToDelete</from>
+											<to>list</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="c9f1ae563fee4f5591d9ac0a6a1e3add"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>monthFile</from>
+											<to>object</to>
+										</steps>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="e5343ec5d5ff43759319675b87b82faa"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>resultae3f624f6d2c4e8ea66e977cca52e181/list</from>
+										<to>filesToDelete</to>
+									</steps>
+								</steps>
+							</steps>
+							<steps xsi:type="be.nabu.libs.services.vm.step.Sequence"
+									disabled="false"
+									id="0a57fb22dc804d4e9661c72a4c5cac43"
+									lineNumber="31">
+								<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+										disabled="false"
+										id="711a5fee81a34ba4b7e141bf8e757962"
+										lineNumber="32">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+											disabled="false"
+											id="bea67c0a03ed450f9c7b9b4575dcc361"
+											serviceId="nabu.utils.Resource.list"
+											resultName="resultf93de7149e4943e3bd7fd9de2c5e9ba5"
+											temporaryMapping="true"
+											x="61"
+											y="152"
+											invocationOrder="0"
+											asynchronous="false"
+											recache="false">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="a6372ce5b83b4f329984ba870891c7a1"
+												mask="false"
+												optional="false"
+												fixedValue="true">
+											<from>^[0-9]+$</from>
+											<to>directoryFilter</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="ad68d211540b495aa6dc65edd5e6bff6"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>monthFile/uri</from>
+											<to>uri</to>
+										</steps>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+											disabled="false"
+											id="3cdefe09d02445dbab9f1c46eb09b500"
+											mask="false"
+											optional="false"
+											fixedValue="false">
+										<from>resultf93de7149e4943e3bd7fd9de2c5e9ba5/children</from>
+										<to>dayFiles</to>
+									</steps>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.For"
+										disabled="false"
+										id="c561a24bddd24fa690097bbc0d14313d"
+										lineNumber="33"
+										variable="dayFile">
+									<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+											disabled="false"
+											id="20424ccf76ba4cf9a22ea00cb25f4412"
+											lineNumber="34">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+												disabled="false"
+												id="ce8e88d505154c7fb84f515f13f7e160"
+												serviceId="nabu.frameworks.datastore.utils.isInWindow"
+												resultName="result5418a5c1667146699548a7a67a2622d4"
+												temporaryMapping="true"
+												x="269"
+												y="77"
+												invocationOrder="0"
+												asynchronous="false"
+												recache="false">
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="f66ab973615d4afaa069afd2110fc63b"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>from</from>
+												<to>from</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="2ce46664f3ae48a78f45fdc0ab8e29e0"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>until</from>
+												<to>until</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="f5dee7e9dbc64afcb85d7319e3ed6e24"
+													mask="false"
+													optional="false"
+													fixedValue="true">
+												<from>daily</from>
+												<to>level</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="e1b9f71f3afa4254ac099fcd76977f84"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>dayFile/uri</from>
+												<to>uri</to>
+											</steps>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="925adbdfe7e846759547035d36665687"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>result5418a5c1667146699548a7a67a2622d4/inWindow</from>
+											<to>inWindow</to>
+										</steps>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Break"
+											disabled="false"
+											id="53ecb1068a2243d9a59014d9d161076c"
+											label="!inWindow"
+											lineNumber="35">
+										<count>1</count>
+										<continueExecution>true</continueExecution>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+											disabled="false"
+											id="3c8f39c7c570471dab2eaa9d5148c9db"
+											lineNumber="36">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+												disabled="false"
+												id="9b34a6f8b912404b96c14f583eb52ff1"
+												serviceId="nabu.utils.Resource.list"
+												resultName="result8b5663097e0843bd914204ef0b96bbc3"
+												temporaryMapping="true"
+												x="169"
+												y="178"
+												invocationOrder="0"
+												asynchronous="false"
+												recache="false">
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="6fd5e677eca04067b7453b97af916e3a"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>dayFile/uri</from>
+												<to>uri</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="789b9b44bd8a46668c5533188be4b5ea"
+													mask="false"
+													optional="false"
+													fixedValue="true">
+												<from>true</from>
+												<to>recursive</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="ccc0e5c15db44a708c15ea0c293927ca"
+													mask="false"
+													optional="false"
+													fixedValue="true">
+												<from>.*</from>
+												<to>fileFilter</to>
+											</steps>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+												disabled="false"
+												id="78f47d2fa7dc4ae4bdca9d165434656a"
+												serviceId="nabu.frameworks.datastore.utils.zipFiles"
+												resultName="resultec3c282ae17d4aa6bb42704d192d0016"
+												temporaryMapping="true"
+												x="315"
+												y="291"
+												invocationOrder="1"
+												asynchronous="false"
+												recache="false">
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="12bdcd7bc74640c7be2badf4fc84cc13"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>result8b5663097e0843bd914204ef0b96bbc3/children</from>
+												<to>filesToZip</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="a1551fcf958647afa1ab10099a3aebfd"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>input/context</from>
+												<to>context</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="ea99fd479ccd48c2b2ef15b2e99aea28"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>dayFile/uri</from>
+												<to>directoryToZip</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="df8fe4d5dcbf441abb56698d290c822e"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>hasZipped</from>
+												<to>hasZipped</to>
+											</steps>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+												disabled="false"
+												id="e73650ec04c14d0491271a6ef3b0aeb9"
+												serviceId="nabu.utils.List.addAll"
+												resultName="result2bd2762f2e7b4c18bf179dd63b884b27"
+												temporaryMapping="true"
+												x="431"
+												y="414"
+												invocationOrder="2"
+												asynchronous="false"
+												recache="false">
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="3b84cd5a81fd4aaca5ed9f0c11b5d39c"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>output/mappedFiles</from>
+												<to>list</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="6881130ee1e4413d87967c9a7d24b40a"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>resultec3c282ae17d4aa6bb42704d192d0016/mappedFiles</from>
+												<to>objects</to>
+											</steps>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="15138f8dfd1945dd9647102108e0cd05"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>result2bd2762f2e7b4c18bf179dd63b884b27/list</from>
+											<to>output/mappedFiles</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+												disabled="false"
+												id="6efa2d24f69c4d08a7902c903e8ecf52"
+												serviceId="nabu.utils.List.addAll"
+												resultName="result7a30b889eb85499da5f81c069b6be525"
+												temporaryMapping="true"
+												x="506"
+												y="52"
+												invocationOrder="1"
+												asynchronous="false"
+												recache="false">
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="e31aa7e3071047cd8d6233a85f42edf7"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>filesToDelete</from>
+												<to>list</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="996b66a179864f0690c37e626ddbd4a5"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>result8b5663097e0843bd914204ef0b96bbc3/children</from>
+												<to>objects</to>
+											</steps>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="51b77fdc5a174815ae7038147f7b5ba5"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>result7a30b889eb85499da5f81c069b6be525/list</from>
+											<to>filesToDelete</to>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="6cb63b3030a744c99ec76a5ee28f53ef"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>resultec3c282ae17d4aa6bb42704d192d0016/hasZipped</from>
+											<to>hasZipped</to>
+										</steps>
+									</steps>
+									<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+											disabled="false"
+											id="4445dc4536114589b1a849c42e514d10"
+											lineNumber="37">
+										<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+												disabled="false"
+												id="0f0268be0856478eb315e7365500c4bd"
+												serviceId="nabu.utils.List.add"
+												resultName="resultae3f624f6d2c4e8ea66e977cca52e181"
+												temporaryMapping="true"
+												x="36"
+												y="170"
+												invocationOrder="0"
+												asynchronous="false"
+												recache="false">
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="a9e6d567f8ab47e5a3102a3c9dfc9047"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>filesToDelete</from>
+												<to>list</to>
+											</steps>
+											<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+													disabled="false"
+													id="2afd9bba96944fccbd8a4a7aaed9e6cd"
+													mask="false"
+													optional="false"
+													fixedValue="false">
+												<from>dayFile</from>
+												<to>object</to>
+											</steps>
+										</steps>
+										<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+												disabled="false"
+												id="faf93d25474d440a89f3d1ca437306cd"
+												mask="false"
+												optional="false"
+												fixedValue="false">
+											<from>resultae3f624f6d2c4e8ea66e977cca52e181/list</from>
+											<to>filesToDelete</to>
+										</steps>
+									</steps>
+									<query>dayFiles</query>
+								</steps>
+							</steps>
+						</steps>
+						<query>monthFiles</query>
+					</steps>
+				</steps>
+			</steps>
+			<query>yearFiles</query>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				comment="From becomes until"
+				disabled="false"
+				id="3b8df3ab6526470aab92f87df04e349b"
+				lineNumber="38">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="06db083e266c4dc8a1db0598d9f861db"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>from</from>
+				<to>until</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.For"
+				disabled="false"
+				id="f56c3e815dce4d1fbea5a0e1808af12c"
+				lineNumber="39"
+				variable="fileToDelete">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+					disabled="false"
+					id="fdc1d68929ff449dbc9de72950347bb7"
+					lineNumber="40">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+						disabled="false"
+						id="618b93e690d440658a40d50eef55332c"
+						serviceId="nabu.utils.Resource.delete"
+						resultName="resulta52790bed8994feb861c397b454669b2"
+						temporaryMapping="true"
+						x="86"
+						y="78"
+						invocationOrder="0"
+						asynchronous="false"
+						recache="false">
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="c6a4ae769ff74134b50489a5d82c26fa"
+							mask="false"
+							optional="false"
+							fixedValue="false">
+						<from>fileToDelete/uri</from>
+						<to>uri</to>
+					</steps>
+				</steps>
+			</steps>
+			<query>filesToDelete</query>
+		</steps>
+		<query>input/amountOfWindows</query>
+	</steps>
+</sequence>

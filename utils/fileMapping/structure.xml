@@ -1,0 +1,4 @@
+<structure name="fileMapping">
+    <field minOccurs="0" name="originalUrl" type="java.net.URI"/>
+    <field minOccurs="0" name="newUrl" type="java.net.URI"/>
+</structure>

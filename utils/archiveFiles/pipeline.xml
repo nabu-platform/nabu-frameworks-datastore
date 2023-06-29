@@ -1,0 +1,23 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="context" type="java.lang.String"/>
+        <field name="folder" type="java.net.URI"/>
+        <field name="window" type="be.nabu.libs.types.base.Duration"/>
+        <field comment="If not filled in, we leave the last window open" minOccurs="0" name="before" type="java.util.Date"/>
+        <field minOccurs="0" name="amountOfWindows" type="java.lang.Long"/>
+    </structure>
+    <structure name="output">
+        <structure definition="nabu.frameworks.datastore.utils.fileMapping" maxOccurs="unbounded" minOccurs="0" name="mappedFiles"/>
+    </structure>
+    <field minOccurs="0" name="before" type="java.util.Date"/>
+    <structure definition="nabu.utils.types.DateValues" minOccurs="0" name="values"/>
+    <field minOccurs="0" name="from" type="java.util.Date"/>
+    <field minOccurs="0" name="until" type="java.util.Date"/>
+    <field name="level" type="java.lang.String"/>
+    <structure definition="be.nabu.libs.resources.api.ResourceProperties" maxOccurs="unbounded" minOccurs="0" name="yearFiles"/>
+    <structure definition="be.nabu.libs.resources.api.ResourceProperties" maxOccurs="unbounded" minOccurs="0" name="monthFiles"/>
+    <structure definition="be.nabu.libs.resources.api.ResourceProperties" maxOccurs="unbounded" minOccurs="0" name="dayFiles"/>
+    <structure definition="be.nabu.libs.resources.api.ResourceProperties" maxOccurs="unbounded" minOccurs="0" name="filesToDelete"/>
+    <field name="hasZipped" type="java.lang.Boolean"/>
+    <field name="inWindow" type="java.lang.Boolean"/>
+</structure>

@@ -1,0 +1,15 @@
+<structure name="pipeline">
+    <structure name="input">
+        <field minOccurs="0" name="context" type="java.lang.String"/>
+        <field name="directoryToZip" type="java.net.URI"/>
+        <structure definition="be.nabu.libs.resources.api.ResourceProperties" maxOccurs="unbounded" minOccurs="0" name="filesToZip"/>
+        <field minOccurs="0" name="hasZipped" type="java.lang.Boolean"/>
+    </structure>
+    <structure name="output">
+        <field minOccurs="0" name="zipUri" type="java.net.URI"/>
+        <structure definition="nabu.frameworks.datastore.utils.fileMapping" maxOccurs="unbounded" minOccurs="0" name="mappedFiles"/>
+        <field minOccurs="0" name="hasZipped" type="java.lang.Boolean"/>
+    </structure>
+    <field minOccurs="0" name="directoryName" type="java.lang.String"/>
+    <structure definition="nabu.frameworks.datastore.types.ResourceDescriptor" maxOccurs="unbounded" minOccurs="0" name="descriptors"/>
+</structure>
