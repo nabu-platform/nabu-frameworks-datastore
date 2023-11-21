@@ -451,10 +451,6 @@
 				<from>false</from>
 				<to>hasZipped</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Drop"
-					disabled="false"
-					id="35b044b858764837adb0463cbd165c3c"
-					path="filesToDelete" xsi:nil="true"/>
 		</steps>
 		<steps xsi:type="be.nabu.libs.services.vm.step.For"
 				disabled="false"
@@ -511,6 +507,15 @@
 							fixedValue="true">
 						<from>yearly</from>
 						<to>level</to>
+					</steps>
+					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+							disabled="false"
+							id="0efbc9dbeb4e4b28bc18c738d432eb59"
+							mask="false"
+							optional="false"
+							fixedValue="true">
+						<from>=level != "yearly"</from>
+						<to>inclusive</to>
 					</steps>
 				</steps>
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -868,6 +873,15 @@
 										fixedValue="false">
 									<from>monthFile/uri</from>
 									<to>uri</to>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="cd2d05eff3eb45f295a8d73b772a62ed"
+										mask="false"
+										optional="false"
+										fixedValue="true">
+									<from>=level != "monthly"</from>
+									<to>inclusive</to>
 								</steps>
 							</steps>
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
@@ -1493,39 +1507,39 @@
 				<to>until</to>
 			</steps>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.For"
+		<query>input/amountOfWindows</query>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.For"
+			disabled="false"
+			id="f56c3e815dce4d1fbea5a0e1808af12c"
+			lineNumber="39"
+			variable="fileToDelete">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="f56c3e815dce4d1fbea5a0e1808af12c"
-				lineNumber="39"
-				variable="fileToDelete">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				id="fdc1d68929ff449dbc9de72950347bb7"
+				lineNumber="40">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 					disabled="false"
-					id="fdc1d68929ff449dbc9de72950347bb7"
-					lineNumber="40">
-				<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+					id="618b93e690d440658a40d50eef55332c"
+					serviceId="nabu.utils.Resource.delete"
+					resultName="resulta52790bed8994feb861c397b454669b2"
+					temporaryMapping="true"
+					x="86"
+					y="78"
+					invocationOrder="0"
+					asynchronous="false"
+					recache="false">
+				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
-						id="618b93e690d440658a40d50eef55332c"
-						serviceId="nabu.utils.Resource.delete"
-						resultName="resulta52790bed8994feb861c397b454669b2"
-						temporaryMapping="true"
-						x="86"
-						y="78"
-						invocationOrder="0"
-						asynchronous="false"
-						recache="false">
-					<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-							disabled="false"
-							id="c6a4ae769ff74134b50489a5d82c26fa"
-							mask="false"
-							optional="false"
-							fixedValue="false">
-						<from>fileToDelete/uri</from>
-						<to>uri</to>
-					</steps>
+						id="c6a4ae769ff74134b50489a5d82c26fa"
+						mask="false"
+						optional="false"
+						fixedValue="false">
+					<from>fileToDelete/uri</from>
+					<to>uri</to>
 				</steps>
 			</steps>
-			<query>filesToDelete</query>
 		</steps>
-		<query>input/amountOfWindows</query>
+		<query>filesToDelete</query>
 	</steps>
 </sequence>

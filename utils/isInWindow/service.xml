@@ -704,18 +704,39 @@
 				id="0705037a97d94921bc6ff4f61ad6c37c"
 				lineNumber="7" xsi:nil="true"/>
 	</steps>
-	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+	<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 			disabled="false"
-			id="415fb8b1c9c542a18a32a88adec3a3bf"
-			lineNumber="8">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+			id="45385b8417844b34b8af22275f076f9f"
+			lineNumber="8"
+			query="input/inclusive">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 				disabled="false"
-				id="b77d2af8301142a8a9a427c6c338c68b"
-				mask="false"
-				optional="false"
-				fixedValue="true">
-			<from>=date &gt;= from &amp;&amp; date &lt;= until</from>
-			<to>output/inWindow</to>
+				id="415fb8b1c9c542a18a32a88adec3a3bf"
+				label="true"
+				lineNumber="9">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="b77d2af8301142a8a9a427c6c338c68b"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>=date &gt;= from &amp;&amp; date &lt;= until</from>
+				<to>output/inWindow</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+				disabled="false"
+				id="1447f5fd01984787b8da58727fd1ce30"
+				lineNumber="10">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d8b6de0c3e0e4cb98371f40a0a6deacf"
+					mask="false"
+					optional="false"
+					fixedValue="true">
+				<from>=date &gt;= from &amp;&amp; date &lt; until</from>
+				<to>output/inWindow</to>
+			</steps>
 		</steps>
 	</steps>
 </sequence>
